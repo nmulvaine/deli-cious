@@ -1,20 +1,18 @@
 package com.pluralsight.capstone2.utilities;
 
 
-import com.pluralsight.capstone2.sandwich.SandwichBuilder;
-
-
+import com.pluralsight.capstone2.orderingsystem.CurrentCustomerOrder;
 
 public class UserPrompt extends UserChoice<Object>
 {
-    int numberOfOrders;
-    SandwichBuilder sb;
+    private int numberOfOrders;
+    private int sandwichCounter;
+
 
     // Raw data type for input
     public UserPrompt(Object choice)
     {
         super(choice);
-        this.choice = choice;
 
     }
 
@@ -22,9 +20,9 @@ public class UserPrompt extends UserChoice<Object>
     public void userOrderNumberPrompt()
     {
         System.out.println("""
-                Welcome! Let's get started with your order!
+                Please enter 'one' for a single order
                 
-                Is this one order or multiple?
+                or 'multiple' for multiple orders
                 
                 """);
         // Gets yes or no to multiple orders
@@ -40,26 +38,23 @@ public class UserPrompt extends UserChoice<Object>
             System.out.println("How many orders would you like to make?");
             numberOfOrders = scan.nextInt();
             System.out.println("You would like to place " + numberOfOrders + " orders?");
-            collectSandwichOrder();
         } else if (userChoice.getChoice().equals("one")) {
             System.out.println("Alright. Let's begin making your order.");
             numberOfOrders = 1;
-            collectSandwichOrder();
+
         } else {
             System.out.println("I am sorry, I don't understand. Please try again");
         }
+
+
+        CurrentCustomerOrder order = new CurrentCustomerOrder();
+        order.placeOrder(numberOfOrders);
     }
 
-    private void collectSandwichOrder()
-    {
-        for (int i = 1; i <= numberOfOrders; i++) {
-            System.out.println("Let's start getting your items together for order " + 1 + ":");
-            sb.sandwichBuilder();
-        }
-    }
 
     public int getNumberOfOrders(int sandwichCounter)
     {
+        this.sandwichCounter = sandwichCounter;
         return numberOfOrders;
     }
 

@@ -1,52 +1,36 @@
 package com.pluralsight.capstone2.sandwich;
 
- class SandwichIngredients
+public class SandwichIngredients
 {
-    SandwichBuilder sb;
+    private String bread;
+    private String meat;
+    private String cheese;
+    private String veggies;
 
-    enum Size {
+    public SandwichIngredients(String bread, String cheese, String meat, String veggies)
+    {
+        this.bread = bread;
+        this.cheese = cheese;
+        this.meat = meat;
+        this.veggies = veggies;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "SandwichIngredients{" +
+               "bread='" + bread + '\'' +
+               ", meat='" + meat + '\'' +
+               ", cheese='" + cheese + '\'' +
+               ", veggies='" + veggies + '\'' +
+               '}';
+    }
+
+    enum Size
+    {
         SMALL,
         MEDIUM,
         LARGE
-}
-    public class Bread {
-        private String kind;
-        private double price;
-
-        public Bread(String kind, double price) {
-            this.kind = kind;
-            this.price = price;
-        }
-    }
-
-    public class Meat {
-        private String kind;
-        private double price;
-
-        public Meat(String kind, double price) {
-            this.kind = kind;
-            this.price = price;
-        }
-    }
-
-    public class Cheese {
-        private String kind;
-        private double price;
-
-        public Cheese(String kind, double price) {
-            this.kind = kind;
-            this.price = price;
-        }
-    }
-
-    public class Veggie {
-        private String kind;
-        private double price;
-
-        public Veggie(String kind, double price) {
-            this.kind = kind;
-            this.price = price;
-        }
     }
 
 }

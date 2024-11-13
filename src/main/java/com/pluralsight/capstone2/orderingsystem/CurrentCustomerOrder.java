@@ -1,23 +1,19 @@
 package com.pluralsight.capstone2.orderingsystem;
 
+import com.pluralsight.capstone2.utilities.UserChoice;
 
-import com.pluralsight.capstone2.utilities.UserPrompt;
 
 import java.util.ArrayList;
 
 
-
 public class CurrentCustomerOrder
 {
+   protected ArrayList<Sandwich> sandwichList = new ArrayList<>();
 
-    static UserPrompt p = new UserPrompt(null);
-    ArrayList<Sandwich> sandwichList = new ArrayList<>();
 
-    public void currentCustomerSandwich()
+
+    public <Sandwich> void placeOrder(int numberOfOrders)
     {
-        p.userOrderNumberPrompt();
-        int numberOfOrders = p.getNumberOfOrders();
-
         for (int i = 0; i < numberOfOrders; i++) {
             System.out.println("Making sandwich " + (i + 1));
             Sandwich sandwich = createSandwich();
@@ -27,11 +23,12 @@ public class CurrentCustomerOrder
         displayOrderSummary();
 
     }
-private void displayOrderSummary() {
-    System.out.println("\nOrder Summary");
-    for (Sandwich sandwich : sandwichList) {
+
+    public CurrentCustomerOrder()
+    {
+        UserChoice userChoice = new UserChoice("");
         System.out.println("Choose bread type:");
-        String bread = scan.nextLine().trim();
+        String bread = userChoice.setChoice(new choice);
 
         System.out.println("Choose meat type:");
         String meat = scan.nextLine().trim();
@@ -44,8 +41,16 @@ private void displayOrderSummary() {
 
         return new Sandwich(bread, meat, cheese, veggies);
     }
-}
+
+    private void displayOrderSummary()
+    {
+        System.out.println("\nOrder Summary");
+        for (Sandwich sandwich : sandwichList) {
+            System.out.println(sandwich);
+        }
     }
+}
+
 
 
 
