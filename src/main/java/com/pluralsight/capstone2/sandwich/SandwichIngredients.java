@@ -1,18 +1,52 @@
 package com.pluralsight.capstone2.sandwich;
 
-public class SandwichIngredients
+ class SandwichIngredients
 {
+    SandwichBuilder sb;
 
-    enum BreadType {
-        WHITE
+    enum Size {
+        SMALL,
+        MEDIUM,
+        LARGE
+}
+    public class Bread {
+        private String kind;
+        private double price;
+
+        public Bread(String kind, double price) {
+            this.kind = kind;
+            this.price = price;
+        }
     }
-    
-    enum MeatType {
-        HAM
+
+    public class Meat {
+        private String kind;
+        private double price;
+
+        public Meat(String kind, double price) {
+            this.kind = kind;
+            this.price = price;
+        }
     }
-    
-    enum CheeseType {
-        CHEDDAR
+
+    public class Cheese {
+        private String kind;
+        private double price;
+
+        public Cheese(String kind, double price) {
+            this.kind = kind;
+            this.price = price;
+        }
     }
-    
+
+    public class Veggie {
+        private String kind;
+        private double price;
+
+        public Veggie(String kind, double price) {
+            this.kind = kind;
+            this.price = price;
+        }
+    }
+
 }

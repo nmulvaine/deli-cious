@@ -8,7 +8,7 @@ import com.pluralsight.capstone2.sandwich.SandwichBuilder;
 public class UserPrompt extends UserChoice<Object>
 {
     int numberOfOrders;
-    SandwichBuilder sb = new SandwichBuilder();
+    SandwichBuilder sb;
 
     // Raw data type for input
     public UserPrompt(Object choice)
