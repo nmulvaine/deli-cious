@@ -27,18 +27,18 @@ public class CurrentCustomerOrder
 
     private SandwichIngredients createSandwich()
     {
-        UserChoice<String> u = new UserChoice<>("");
+        UserChoice<String> userChoice = new UserChoice<>("");
         System.out.println("Choose bread type:");
-        String bread = u.getScan().nextLine().trim();
+        String bread = userChoice.getScan().nextLine().trim();
 
         System.out.println("Choose meat type:");
-        String meat = u.getScan().nextLine().trim();
+        String meat = userChoice.getScan().nextLine().trim();
 
         System.out.println("Choose cheese type:");
-        String cheese = u.getScan().nextLine().trim();
+        String cheese = userChoice.getScan().nextLine().trim();
 
         System.out.println("Choose veggies:");
-        String veggies = u.getScan().nextLine().trim();
+        String veggies = userChoice.getScan().nextLine().trim();
 
         return new SandwichIngredients(bread, meat, cheese, veggies);
     }

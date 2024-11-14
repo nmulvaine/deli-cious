@@ -2,6 +2,7 @@ package com.pluralsight.capstone2.sandwich;
 
 public class SandwichIngredients
 {
+
     private String bread;
     private String meat;
     private String cheese;
@@ -32,5 +33,4 @@ public class SandwichIngredients
         MEDIUM,
         LARGE
     }
-
 }

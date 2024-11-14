@@ -5,23 +5,23 @@ import java.util.Scanner;
 
 // Gets input options from the user userInput/userChoice, possibly Swing input
 // Making class for potential of Swing interface
-public class UserChoice<UC>
+public class UserChoice<T>
 {
     Scanner scan = new Scanner(System.in);
-    public UC choice;
+    public T choice;
 
-    public UserChoice(UC choice)
+    public UserChoice(T choice)
     {
         this.choice = choice;
     }
 
 
-    public UC getChoice()
+    public T getChoice()
     {
         return choice;
     }
 
-    public void setChoice(UC choice)
+    public void setChoice(T choice)
     {
         this.choice = choice;
     }
@@ -31,10 +31,6 @@ public class UserChoice<UC>
         return scan;
     }
 
-    public void setScan(Scanner scan)
-    {
-        this.scan = scan;
-    }
 
     @Override
     public String toString()
@@ -45,4 +41,3 @@ public class UserChoice<UC>
                '}';
     }
 }
-

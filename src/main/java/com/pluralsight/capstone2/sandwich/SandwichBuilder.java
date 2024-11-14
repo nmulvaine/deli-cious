@@ -1,49 +1,61 @@
 package com.pluralsight.capstone2.sandwich;
 
-import com.pluralsight.capstone2.utilities.UserPrompt;
+import com.pluralsight.capstone2.utilities.UserChoice;
 
-public class SandwichBuilder<sandwich>
+public class SandwichBuilder
 {
-    // Want userPrompt with existing values
-    UserPrompt userPrompt = new UserPrompt(null);
-    private SandwichIngredients si;
-    private boolean isMakingSandwich = true;
-    protected static int sandwichCounter = 0;
+    private String bread;
+    private String meat;
+    private String cheese;
+    private String veggies;
 
-    public SandwichBuilder(SandwichIngredients si)
+    public SandwichBuilder setBread(String bread){
+        this.bread = bread;
+        return this;
+    }
+
+    public SandwichBuilder setMeat(String meat){
+        this.meat = meat;
+        return this;
+    }
+
+    public SandwichBuilder setCheese(String cheese){
+        this.cheese = cheese;
+        return this;
+    }
+
+    public SandwichBuilder setVeggies(String veggies){
+        this.veggies = veggies;
+        return this;
+    }
+
+    public SandwichIngredients build(){
+        return new SandwichIngredients(bread, meat, cheese,veggies);
+    }
+
+    protected SandwichIngredients createSandwich()
     {
-        this.si = si;
-    }
+        UserChoice<String> userChoice = new UserChoice<>("");
 
-    // Counts number of sandwiches Cx has made
-    // Makes sandwiches
-    public void sandwichBuilder()
-    {
-        sandwichCounter++;
-        int numberOfOrders = userPrompt.getNumberOfOrders();
+        System.out.println("Enter bread type");
+        String bread = userChoice.getScan().nextLine().trim();
 
-        for (int i = 0; i < numberOfOrders; i++) {
-            System.out.println("\nMaking sandwich" + (i + 1) + "...");
-            Sandwhich sandwhich = buildSandwich();
-            System.out.println("Added: " + sandwhich);
-        }
-        System.out.println("\nYou order is done being made");
+        System.out.println("Enter meat type");
+        String meat = userChoice.getScan().nextLine().trim();
 
-        protected Sandwich buildSandwich () {
-        String bread = chooseBread();
-        String meat = chooseMeat();
-        String cheese = chooseCheese();
-        String veggies = chooseVeggies();
+        System.out.println("Enter cheese type");
+        String cheese = userChoice.getScan().nextLine().trim();
 
-        return new Sandwhich(bread, meat, cheese, veggies);
-        // add veggiesChoice to a sandwich object
-    }
-private String chooseBread(){
-        System.out.println("Please enter the bread option you'd like");
-        return userPrompt.setScan().nextLine().trim().toLowerCase();
+        System.out.println("Enter veggies");
+        String veggies = userChoice.getScan().nextLine().trim();
+
+        return new SandwichBuilder()
+                .setBread(bread)
+                .setMeat(meat)
+                .setCheese(cheese)
+                .setVeggies(veggies)
+                .build();
     }
 
 
-    }
-
-    }
+}
