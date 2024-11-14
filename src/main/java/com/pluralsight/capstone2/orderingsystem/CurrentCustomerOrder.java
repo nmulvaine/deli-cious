@@ -1,5 +1,6 @@
 package com.pluralsight.capstone2.orderingsystem;
 
+import com.pluralsight.capstone2.sandwich.SandwichIngredients;
 import com.pluralsight.capstone2.utilities.UserChoice;
 
 
@@ -8,15 +9,15 @@ import java.util.ArrayList;
 
 public class CurrentCustomerOrder
 {
-   protected ArrayList<Sandwich> sandwichList = new ArrayList<>();
+   protected ArrayList<SandwichIngredients> sandwichList = new ArrayList<>();
 
 
 
-    public <Sandwich> void placeOrder(int numberOfOrders)
+    public void placeOrder(int numberOfOrders)
     {
         for (int i = 0; i < numberOfOrders; i++) {
             System.out.println("Making sandwich " + (i + 1));
-            Sandwich sandwich = createSandwich();
+            SandwichIngredients sandwich = createSandwich();
             sandwichList.add(sandwich);
             System.out.println("Added:" + sandwich);
         }
@@ -24,35 +25,29 @@ public class CurrentCustomerOrder
 
     }
 
-    public CurrentCustomerOrder()
+    private SandwichIngredients createSandwich()
     {
-        UserChoice userChoice = new UserChoice("");
+        UserChoice<String> u = new UserChoice<>("");
         System.out.println("Choose bread type:");
-        String bread = userChoice.setChoice(new choice);
+        String bread = u.getScan().nextLine().trim();
 
         System.out.println("Choose meat type:");
-        String meat = scan.nextLine().trim();
+        String meat = u.getScan().nextLine().trim();
 
         System.out.println("Choose cheese type:");
-        String cheese = scan.nextLine().trim();
+        String cheese = u.getScan().nextLine().trim();
 
         System.out.println("Choose veggies:");
-        String veggies = scan.nextLine().trim();
+        String veggies = u.getScan().nextLine().trim();
 
-        return new Sandwich(bread, meat, cheese, veggies);
+        return new SandwichIngredients(bread, meat, cheese, veggies);
     }
 
     private void displayOrderSummary()
     {
         System.out.println("\nOrder Summary");
-        for (Sandwich sandwich : sandwichList) {
+        for (SandwichIngredients sandwich : sandwichList) {
             System.out.println(sandwich);
         }
     }
 }
-
-
-
-
-
-

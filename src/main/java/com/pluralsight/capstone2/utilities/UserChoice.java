@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class UserChoice<UC>
 {
     Scanner scan = new Scanner(System.in);
-    protected UC choice;
+    public UC choice;
 
     public UserChoice(UC choice)
     {
