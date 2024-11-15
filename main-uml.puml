@@ -1,0 +1,7 @@
+@startuml
+class com.pluralsight.capstone2.main.MainApp {
++ {static} void main(String[])
+- {static} void displayMenu()
+}
+
+@enduml

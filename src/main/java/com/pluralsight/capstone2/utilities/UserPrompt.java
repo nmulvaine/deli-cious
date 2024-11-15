@@ -1,8 +1,5 @@
 package com.pluralsight.capstone2.utilities;
 
-import com.pluralsight.capstone2.sandwich.*;
-import java.util.Scanner;
-
 public class UserPrompt {
     private UserChoice u = new UserChoice();
     private int numberOfOrders;
@@ -17,10 +14,10 @@ public class UserPrompt {
         } else if (r.equals("2")) {
             System.out.println("How many orders would you like to make?");
             numberOfOrders = u.getScanner().nextInt();
-            u.getScanner().nextLine(); // Consume the newline
+            u.getScanner().nextLine();
             System.out.println("You would like to place " + numberOfOrders + " orders? [1 for 'yes'] [2 for 'no']");
             int orderConfirmation = u.getScanner().nextInt();
-            u.getScanner().nextLine(); // Consume the newline
+            u.getScanner().nextLine();
             if (orderConfirmation == 2) {
                 System.out.println("Let's confirm if you want multiple orders");
             }

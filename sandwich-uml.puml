@@ -1,0 +1,53 @@
+@startuml
+class com.pluralsight.capstone2.sandwich.SandwichIngredients {
+- String bread
+- String meat
+- String cheese
+- String veggies
+- String breadSize
+- String meatAmount
+- String cheeseAmount
+- String sauces
+- String drinks
+- String drinkSize
+- String chips
+- String chipsSize
++ String getBread()
++ String getMeat()
++ String getCheese()
++ String getVeggies()
++ String getSauces()
++ String getDrinks()
++ String getChips()
++ void setBreadSize(String)
++ void setMeatAmount(String)
++ void setCheeseAmount(String)
++ void setSauces(String)
++ void setDrinks(String)
++ void setDrinkSize(String)
++ void setChips(String)
++ void setChipsSize(String)
+}
+
+
+class com.pluralsight.capstone2.sandwich.SandwichPrompt {
+- MenuItemParser menuItemParser
+- Scanner scanner
+- List<SandwichIngredients> sandwiches
++ void sandwichPrompt()
+- String getUserChoice(List<String>)
+- void checkout()
+- double calculateTotalAmount()
+}
+
+
+class com.pluralsight.capstone2.sandwich.SandwichBuilder {
+- List<SandwichIngredients> sandwichList
++ void addSandwich(SandwichIngredients)
++ List<SandwichIngredients> getSandwichList()
++ SandwichIngredients createSandwich()
++ void displayOrderSummary()
+}
+
+
+@enduml

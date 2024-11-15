@@ -30,7 +30,7 @@ public class FileWriter {
                     writer.println(" - Chips: " + sandwich.getChips());
                     count++;
                 }
-                // Writing footer with the total amount paid
+
                 writer.println("==============================");
                 writer.println("Total Amount Paid: $" + totalAmount);
                 writer.println("==============================");

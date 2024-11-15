@@ -1,0 +1,75 @@
+@startuml
+class com.pluralsight.capstone2.utilities.UserChoice {
+- {static} Scanner scanner
++ {static} Scanner getScanner()
++ {static} String getStringInput(String)
++ {static} int getIntInput(String)
+}
+
+
+class com.pluralsight.capstone2.utilities.MenuItemParser {
+- String filePath
+- List<String> breadList
+- List<String> meatList
+- List<String> cheeseList
+- List<String> veggiesList
+- List<String> saucesList
+- List<String> drinksList
+- List<String> chipsList
++ void parseCSV()
+- String cleanValue(String)
++ List<String> getBreadList()
++ List<String> getMeatList()
++ List<String> getCheeseList()
++ List<String> getVeggiesList()
++ List<String> getSaucesList()
++ List<String> getDrinksList()
++ List<String> getChipsList()
+}
+
+
+class com.pluralsight.capstone2.utilities.UserPrompt {
+- UserChoice u
+- int numberOfOrders
++ void userOrderNumberPrompt()
++ int getNumberOfOrders()
+}
+
+
+class com.pluralsight.capstone2.utilities.MenuItem {
+- String bread
++ String getBread()
++ void setBread(String)
++ String getBreadSize()
++ void setBreadSize(String)
++ String getCheese()
++ void setCheese(String)
++ String getCheeseAmount()
++ void setCheeseAmount(String)
++ String getChip()
++ void setChip(String)
++ String getDrink()
++ void setDrink(String)
++ String getDrinkSize()
++ void setDrinkSize(String)
++ String getMeat()
++ void setMeat(String)
++ String getMeatAmount()
++ void setMeatAmount(String)
++ String getSauce()
++ void setSauce(String)
++ String getVeggie()
++ void setVeggie(String)
+}
+
+
+class com.pluralsight.capstone2.utilities.FileWriter {
+}
+class com.pluralsight.capstone2.utilities.FileWriter$Receipt {
++ void generateReceipt(String,List<SandwichIngredients>,double)
+}
+
+
+
+com.pluralsight.capstone2.utilities.FileWriter +.. com.pluralsight.capstone2.utilities.FileWriter$Receipt
+@enduml

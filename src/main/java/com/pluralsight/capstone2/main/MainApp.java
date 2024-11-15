@@ -19,7 +19,7 @@ public class MainApp {
             switch (input) {
                 case "1":
                     userPrompt.userOrderNumberPrompt();
-                    currentCustomerOrder.placeOrder(userPrompt.getNumberOfOrders());
+                    //currentCustomerOrder.placeOrder(userPrompt.getNumberOfOrders());
                     sandwichPrompt.sandwichPrompt();
                     break;
                 case "2":

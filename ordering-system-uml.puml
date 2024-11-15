@@ -1,0 +1,8 @@
+@startuml
+class com.pluralsight.capstone2.orderingsystem.CurrentCustomerOrder {
+- SandwichBuilder sandwichBuilder
++ void placeOrder(int)
+}
+
+
+@enduml
