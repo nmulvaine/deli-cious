@@ -15,11 +15,9 @@ public class SandwichIngredients {
 
     @Override
     public String toString() {
-        return "SandwichIngredients{" +
-               "bread='" + bread + '\'' +
-               ", meat='" + meat + '\'' +
-               ", cheese='" + cheese + '\'' +
-               ", veggies='" + veggies + '\'' +
-               '}';
+        return bread + '\'' +
+               meat + '\'' +
+               cheese + '\'' +
+               veggies + '\'';
     }
 }
