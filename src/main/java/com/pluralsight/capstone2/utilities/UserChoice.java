@@ -5,9 +5,23 @@ import java.util.Scanner;
 public class UserChoice {
     private static final Scanner scanner = new Scanner(System.in);
 
-    // Static method to get user input for a given prompt
-    public static String getUserChoice(String prompt) {
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+    public static String getStringInput(String prompt) {
         System.out.println(prompt);
         return scanner.nextLine();
+    }
+
+    public static int getIntInput(String prompt) {
+        System.out.println(prompt);
+        while (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a valid number.");
+            scanner.next(); // Consume invalid input
+        }
+        int input = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline left after reading the integer
+        return input;
     }
 }

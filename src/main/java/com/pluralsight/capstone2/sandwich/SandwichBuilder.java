@@ -1,7 +1,6 @@
 package com.pluralsight.capstone2.sandwich;
 
 import com.pluralsight.capstone2.utilities.UserChoice;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +16,11 @@ public class SandwichBuilder {
     }
 
     public SandwichIngredients createSandwich() {
-        String bread = UserChoice.getUserChoice("Please select your bread:");
-        String meat = UserChoice.getUserChoice("Please select your meat:");
-        String cheese = UserChoice.getUserChoice("Please select your cheese:");
-        String veggies = UserChoice.getUserChoice("Please select your veggies:");
-
+        UserChoice u = new UserChoice();
+        String bread = u.getStringInput("Please select your bread:");
+        String meat = u.getStringInput("Please select your meat:");
+        String cheese = u.getStringInput("Please select your cheese:");
+        String veggies = u.getStringInput("Please select your veggies:");
         SandwichIngredients sandwich = new SandwichIngredients(bread, meat, cheese, veggies);
         addSandwich(sandwich);
         return sandwich;
@@ -32,7 +31,6 @@ public class SandwichBuilder {
             System.out.println("No sandwiches in the order.");
             return;
         }
-
         System.out.println("\nOrder Summary:");
         int sandwichNumber = 1;
         for (SandwichIngredients sandwich : sandwichList) {

@@ -1,7 +1,6 @@
 package com.pluralsight.capstone2.sandwich;
 
 import com.pluralsight.capstone2.utilities.MenuItemParser;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,32 +19,25 @@ public class SandwichPrompt {
 
         // Print the menu and collect user input
         System.out.println("Please select the type of bread you'd like:");
-        printMenuItems(sandwichList, "bread");
-        String breadChoice = scanner.nextLine();
+        String breadChoice = getUserChoice(sandwichList, "bread");
 
         System.out.println("Please select the type of meat you'd like:");
-        printMenuItems(sandwichList, "meat");
-        String meatChoice = scanner.nextLine();
+        String meatChoice = getUserChoice(sandwichList, "meat");
 
         System.out.println("Please select the type of cheese you'd like:");
-        printMenuItems(sandwichList, "cheese");
-        String cheeseChoice = scanner.nextLine();
+        String cheeseChoice = getUserChoice(sandwichList, "cheese");
 
         System.out.println("Please select the type of veggies you'd like:");
-        printMenuItems(sandwichList, "veggies");
-        String veggiesChoice = scanner.nextLine();
+        String veggiesChoice = getUserChoice(sandwichList, "veggies");
 
         System.out.println("Please select the type of sauces you'd like:");
-        printMenuItems(sandwichList, "sauces");
-        String saucesChoice = scanner.nextLine();
+        String saucesChoice = getUserChoice(sandwichList, "sauces");
 
         System.out.println("Please select the type of drink you'd like:");
-        printMenuItems(sandwichList, "drinks");
-        String drinksChoice = scanner.nextLine();
+        String drinksChoice = getUserChoice(sandwichList, "drinks");
 
         System.out.println("Please select the type of chips you'd like:");
-        printMenuItems(sandwichList, "chips");
-        String chipsChoice = scanner.nextLine();
+        String chipsChoice = getUserChoice(sandwichList, "chips");
 
         // Print the user's choices
         System.out.println("Your sandwich order:");
@@ -58,33 +50,56 @@ public class SandwichPrompt {
         System.out.println("Chips: " + chipsChoice);
     }
 
-    private void printMenuItems(List<SandwichIngredients> sandwichList, String itemType) {
+    private String getUserChoice(List<SandwichIngredients> sandwichList, String itemType) {
+        int index = 1;
         for (SandwichIngredients menuItem : sandwichList) {
             switch (itemType) {
                 case "bread":
-                    System.out.println(menuItem.getBread());
+                    System.out.println(index + ". " + menuItem.getBread());
                     break;
                 case "meat":
-                    System.out.println(menuItem.getMeat());
+                    System.out.println(index + ". " + menuItem.getMeat());
                     break;
                 case "cheese":
-                    System.out.println(menuItem.getCheese());
+                    System.out.println(index + ". " + menuItem.getCheese());
                     break;
                 case "veggies":
-                    System.out.println(menuItem.getVeggies());
+                    System.out.println(index + ". " + menuItem.getVeggies());
                     break;
                 case "sauces":
-                    System.out.println(menuItem.getSauces());
+                    System.out.println(index + ". " + menuItem.getSauces());
                     break;
                 case "drinks":
-                    System.out.println(menuItem.getDrinks());
+                    System.out.println(index + ". " + menuItem.getDrinks());
                     break;
                 case "chips":
-                    System.out.println(menuItem.getChips());
+                    System.out.println(index + ". " + menuItem.getChips());
                     break;
                 default:
                     System.out.println("Invalid menu item type.");
             }
+            index++;
+        }
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline
+
+        switch (itemType) {
+            case "bread":
+                return sandwichList.get(choice - 1).getBread();
+            case "meat":
+                return sandwichList.get(choice - 1).getMeat();
+            case "cheese":
+                return sandwichList.get(choice - 1).getCheese();
+            case "veggies":
+                return sandwichList.get(choice - 1).getVeggies();
+            case "sauces":
+                return sandwichList.get(choice - 1).getSauces();
+            case "drinks":
+                return sandwichList.get(choice - 1).getDrinks();
+            case "chips":
+                return sandwichList.get(choice - 1).getChips();
+            default:
+                return "Invalid choice";
         }
     }
 }

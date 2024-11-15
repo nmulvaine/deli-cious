@@ -1,7 +1,6 @@
 package com.pluralsight.capstone2.utilities;
 
 import com.pluralsight.capstone2.sandwich.SandwichIngredients;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuItemParser {
-    String filePath = "src/main/resources/menu-items.csv";
+    private String filePath = "src/main/resources/menu-items.csv";
+
     public List<SandwichIngredients> parseCSV(String filePath) {
         List<SandwichIngredients> sandwichList = new ArrayList<>();
         try (BufferedReader bf = Files.newBufferedReader(Paths.get(this.filePath))) {
             String line;
             bf.readLine(); // Skip header line
-
             while ((line = bf.readLine()) != null) {
                 String[] values = line.split(",");
                 SandwichIngredients menuItem = new SandwichIngredients(
@@ -25,7 +24,6 @@ public class MenuItemParser {
                         cleanValue(values[4]), // Cheese
                         cleanValue(values[6])  // Veggies
                 );
-
                 // Set additional properties
                 menuItem.setBreadSize(cleanValue(values[1]));
                 menuItem.setMeatAmount(cleanValue(values[3]));
@@ -35,8 +33,6 @@ public class MenuItemParser {
                 menuItem.setDrinkSize(cleanValue(values[9]));
                 menuItem.setChips(cleanValue(values[10]));
                 menuItem.setChipsSize(cleanValue(values[11]));
-
-                // Add the menu item to the list
                 sandwichList.add(menuItem);
             }
         } catch (IOException e) {
