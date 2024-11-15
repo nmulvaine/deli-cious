@@ -1,68 +1,60 @@
 package com.pluralsight.capstone2.utilities;
 
-
 import com.pluralsight.capstone2.orderingsystem.CurrentCustomerOrder;
 import com.pluralsight.capstone2.sandwich.SandwichBuilder;
+import com.pluralsight.capstone2.sandwich.SandwichIngredients;
 
-public class UserPrompt extends UserChoice<Object>
+public class UserPrompt extends UserChoice<String>
 {
-    SandwichBuilder sb;
+    private final SandwichBuilder sb;
     private int numberOfOrders;
 
-    // Raw data type for input
-    public UserPrompt(Object choice)
+    public UserPrompt()
     {
-        super(choice);
-
+        super(null);
+        sb = new SandwichBuilder();
     }
 
     public void userOrderNumberPrompt()
     {
-        System.out.println("""
-                Please enter '1' for a single order or '2' for multiple orders
-                
-                """);
-        // Gets yes or no to multiple orders
+        System.out.println("Please enter '1' for a single order or '2' for multiple orders");
         String r = getScan().nextLine().trim().toLowerCase();
-        UserChoice<String> userChoice = new UserChoice<>(r);
+        setChoice(r);
 
-        while (!userChoice.getChoice().equals("2") && !userChoice.getChoice().equals("1")) {
+        while (!getChoice().equals("2") && !getChoice().equals("1")) {
             r = getScan().nextLine().trim().toLowerCase();
-            userChoice.setChoice(r);
+            setChoice(r);
         }
 
-        if (userChoice.getChoice().equals("2")) {
-            System.out.println("How many orders would you like to make?");
-            numberOfOrders = getScan().nextInt();
-            System.out.println("You would like to place " + numberOfOrders + " orders?");
-            System.out.println("Yes or no?");
-            userChoice.setChoice(r);
-            if (userChoice.getChoice().equals("no")) {
-                return;
-            }
-
-        } else if (userChoice.getChoice().equals("1")) {
-            System.out.println("Alright. Let's begin making your order.");
-            numberOfOrders = 1;
-
-        } else {
-            System.out.println("I am sorry, I don't understand. Please try again");
+        switch (getChoice()) {
+            case "1":
+                System.out.println("Alright. Let's begin making your order");
+                numberOfOrders = 1;
+                break;
+            case "2":
+                System.out.println("How many orders would you like to make?");
+                numberOfOrders = getScan().nextInt();
+                System.out.println("You would like to place " + numberOfOrders + " orders? [1 for 'yes'] [2 for 'no']");
+                int orderConfirmation = getScan().nextInt();
+                if (orderConfirmation == 2) {
+                    System.out.println("Let's confirm if you want multiple orders");
+                }
+                break;
+            default:
+                System.out.println("I am sorry, I don't understand. Please try again");
+                break;
         }
-
 
         CurrentCustomerOrder order = new CurrentCustomerOrder();
-
         order.placeOrder(numberOfOrders);
-        sb.setSandwichesInOrder();
-    }
 
-    public void setNumberOfOrders(int numberOfOrders)
-    {
-        this.numberOfOrders = numberOfOrders;
-    }
+        // Create sandwiches and add them to the order
+        for (int i = 0; i < numberOfOrders; i++) {
+            SandwichIngredients sandwich = sb.createSandwich();
+            sb.addSandwich(sandwich);
+        }
 
-    public int getNumberOfOrders()
-    {
-        return numberOfOrders;
+        // Set the sandwiches in the order
+        sb.setSandwichesInOrder(sb.getSandwichList());
     }
 }
