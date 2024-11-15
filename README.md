@@ -30,16 +30,16 @@ Interfaces. There are some classes in this project that could
 benefit from utilizing these.
 OpenCSV and utilizing external repos
 
-![Alt text](images/main-uml.png)
+![Main UML](src/main/images/main-uml.png)
 
-![Alt text](images/ordering-system-uml.png)
+![OrderingSystem UML](src/main/images/ordering-system-uml.png)
 
-![Alt Text](images/sandwich-uml.png)
+![Sandwich UML](src/main/images/sandwich-uml.png)
 
-![Alt Text](images/utilities-uml.png)
+![Utilities UML](src/main/images/utilities-uml.png)
 
-![Alt Text](images/main-screenshot.png)
+![Main Screenshot](src/main/images/main-screenshot.png)
 
-![Alt Text](images/userprompt-screenshot.png)
+![UserPrompt Screenshot](src/main/images/userprompt-screenshot.png)
 
-![Alt Text](images/sandwichbuilder-screenshot.png)
+![Sandwich Builder Screenshot](src/main/images/sandwichbuilder-screenshot.png)
