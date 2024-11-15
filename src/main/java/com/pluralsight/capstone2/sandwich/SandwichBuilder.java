@@ -1,59 +1,64 @@
 package com.pluralsight.capstone2.sandwich;
 
 import com.pluralsight.capstone2.utilities.UserChoice;
+import com.pluralsight.capstone2.utilities.UserPrompt;
 
-public class SandwichBuilder
+import java.util.ArrayList;
+import java.util.List;
+
+public class SandwichBuilder<NumberOfOrders>
 {
-    private String bread;
-    private String meat;
-    private String cheese;
-    private String veggies;
+    private List<SandwichIngredients> sandwichList = new ArrayList<>();
+    private List<NumberOfOrders> sandwichesInOrder = new ArrayList<>();
 
-    public SandwichBuilder setBread(String bread){
-        this.bread = bread;
-        return this;
-    }
-
-    public SandwichBuilder setMeat(String meat){
-        this.meat = meat;
-        return this;
-    }
-
-    public SandwichBuilder setCheese(String cheese){
-        this.cheese = cheese;
-        return this;
-    }
-
-    public SandwichBuilder setVeggies(String veggies){
-        this.veggies = veggies;
-        return this;
-    }
-
-    public SandwichIngredients build(){
-        return new SandwichIngredients(bread, meat, cheese,veggies);
-    }
-
-    protected SandwichIngredients createSandwich()
+    public void addSandwich(SandwichIngredients sandwich)
     {
-        UserChoice<String> userChoice = new UserChoice<>("");
+        sandwichList.add(sandwich);
+    }
 
-        System.out.println("Enter bread type");
+    public List<SandwichIngredients> getSandwichList()
+    {
+        return sandwichList;
+    }
+
+    public SandwichIngredients createSandwich()
+    {
+        UserPrompt up;
+        UserChoice<String> userChoice;
+        for ()
+            userChoice = new UserChoice<>("");
+        System.out.println("Enter bread type:");
         String bread = userChoice.getScan().nextLine().trim();
-
-        System.out.println("Enter meat type");
+        System.out.println("Enter meat type:");
         String meat = userChoice.getScan().nextLine().trim();
-
-        System.out.println("Enter cheese type");
+        System.out.println("Enter cheese type:");
         String cheese = userChoice.getScan().nextLine().trim();
-
-        System.out.println("Enter veggies");
+        System.out.println("Enter veggies:");
         String veggies = userChoice.getScan().nextLine().trim();
+        return new SandwichIngredients(bread, meat, cheese, veggies);
+    }
 
-        return new SandwichBuilder()
-                .setBread(bread)
-                .setMeat(meat)
-                .setCheese(cheese)
-                .setVeggies(veggies)
-                .build();
+    public void displayOrderSummary()
+    {
+        System.out.println("\nOrder Summary");
+        for (SandwichIngredients sandwich : sandwichList) {
+            System.out.println(sandwich);
+        }
+    }
+
+    public List<NumberOfOrders> getSandwichesInOrder()
+    {
+
+        return sandwichesInOrder;
+    }
+
+    public void setSandwichesInOrder(List<NumberOfOrders> sandwichesInOrder)
+    {
+        this.sandwichesInOrder = sandwichesInOrder;
+    }
+
+    public void setSandwichList(List<SandwichIngredients> sandwichList)
+    {
+        this.sandwichList = sandwichList;
     }
 }

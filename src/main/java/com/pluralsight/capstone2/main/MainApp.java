@@ -30,21 +30,15 @@ public class MainApp
                 case "1":
                     UserPrompt p = new UserPrompt(null);
                     p.userOrderNumberPrompt();
-                    System.out.println("Was unable to run userOrderNumberPrompt");
                     // Start order system
                     break;
                 case "2":
-                    System.out.println("Thank you. Exiting now");
+                    System.out.println("Exiting now");
                     break;
                 default:
                     System.out.println("I am sorry, I didn't understand");
                     break;
             }
-
-            if (userChoice.getChoice().equals("2")) {
-                break;
-            }
         }
-
     }
 }
