@@ -1,43 +1,13 @@
 package com.pluralsight.capstone2.utilities;
 
-
 import java.util.Scanner;
 
-// Gets input options from the user userInput/userChoice, possibly Swing input
-// Making class for potential of Swing interface
-public class UserChoice<T>
-{
-    Scanner scan = new Scanner(System.in);
-    public T choice;
+public class UserChoice {
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public UserChoice(T choice)
-    {
-        this.choice = choice;
-    }
-
-
-    public T getChoice()
-    {
-        return choice;
-    }
-
-    public void setChoice(T choice)
-    {
-        this.choice = choice;
-    }
-
-    public Scanner getScan()
-    {
-        return scan;
-    }
-
-
-    @Override
-    public String toString()
-    {
-        return "UserChoice{" +
-               "choice=" + choice +
-               ", scan=" + scan +
-               '}';
+    // Static method to get user input for a given prompt
+    public static String getUserChoice(String prompt) {
+        System.out.println(prompt);
+        return scanner.nextLine();
     }
 }

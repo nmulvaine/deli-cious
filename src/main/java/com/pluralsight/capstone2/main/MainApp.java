@@ -20,7 +20,7 @@ public class MainApp
                 
                 """);
 
-        UserChoice<String> userChoice = new UserChoice<>(null);
+        UserChoice userChoice = new UserChoice();
 
         while (true) {
             String input = userChoice.getScan().nextLine().trim().toLowerCase();
@@ -28,12 +28,12 @@ public class MainApp
 
             switch (userChoice.getChoice()) {
                 case "1":
-                    UserPrompt p = new UserPrompt(null);
+                    UserPrompt p = new UserPrompt();
                     p.userOrderNumberPrompt();
-                    // Start order system
                     break;
                 case "2":
                     System.out.println("Exiting now");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("I am sorry, I didn't understand");
