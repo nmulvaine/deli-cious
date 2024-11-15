@@ -9,13 +9,15 @@ import java.util.List;
 public class FileWriter {
     public static class Receipt {
         public void generateReceipt(String customerName, List<SandwichIngredients> sandwiches, double totalAmount) {
-            try (PrintWriter writer = new PrintWriter("receipt_" + customerName + ".txt")) {
-                // Writing header and customer details
+            try (PrintWriter writer = new PrintWriter("receipt_" + customerName + ".CSV")) {
+
+
                 writer.println("Receipt");
                 writer.println("Customer: " + customerName);
                 writer.println("Date: " + LocalDateTime.now());
                 writer.println("==============================");
-                // Writing each sandwich details
+
+
                 int count = 1;
                 for (SandwichIngredients sandwich : sandwiches) {
                     writer.println("Sandwich " + count + ":");

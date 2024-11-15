@@ -18,10 +18,10 @@ public class UserChoice {
         System.out.println(prompt);
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter a valid number.");
-            scanner.next(); // Consume invalid input
+            scanner.next();
         }
         int input = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline left after reading the integer
+        scanner.nextLine();
         return input;
     }
 }

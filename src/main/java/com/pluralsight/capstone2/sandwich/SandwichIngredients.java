@@ -50,7 +50,7 @@ public class SandwichIngredients {
         return chips;
     }
 
-    // Setters for additional fields
+
     public void setBreadSize(String breadSize) {
         this.breadSize = breadSize;
     }

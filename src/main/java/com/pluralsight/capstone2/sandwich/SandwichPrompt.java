@@ -1,105 +1,105 @@
 package com.pluralsight.capstone2.sandwich;
 
+import com.pluralsight.capstone2.utilities.FileWriter;
 import com.pluralsight.capstone2.utilities.MenuItemParser;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class SandwichPrompt {
     private final MenuItemParser menuItemParser;
     private final Scanner scanner;
+    private final List<SandwichIngredients> sandwiches = new ArrayList<>();
 
     public SandwichPrompt(MenuItemParser menuItemParser) {
         this.menuItemParser = menuItemParser;
         this.scanner = new Scanner(System.in);
+        menuItemParser.parseCSV();
     }
 
-    public void sandwichPrompt(String filePath) {
-        // Parse the CSV file
-        List<SandwichIngredients> sandwichList = menuItemParser.parseCSV(filePath);
+    public void sandwichPrompt() {
+        boolean ordering = true;
 
-        // Print the menu and collect user input
-        System.out.println("Please select the type of bread you'd like:");
-        String breadChoice = getUserChoice(sandwichList, "bread");
+        while (ordering) {
+            System.out.println("Please select the type of bread you'd like (enter 0 to skip):");
+            String breadChoice = getUserChoice(menuItemParser.getBreadList());
 
-        System.out.println("Please select the type of meat you'd like:");
-        String meatChoice = getUserChoice(sandwichList, "meat");
+            System.out.println("Please select the type of meat you'd like (enter 0 to skip):");
+            String meatChoice = getUserChoice(menuItemParser.getMeatList());
 
-        System.out.println("Please select the type of cheese you'd like:");
-        String cheeseChoice = getUserChoice(sandwichList, "cheese");
+            System.out.println("Please select the type of cheese you'd like (enter 0 to skip):");
+            String cheeseChoice = getUserChoice(menuItemParser.getCheeseList());
 
-        System.out.println("Please select the type of veggies you'd like:");
-        String veggiesChoice = getUserChoice(sandwichList, "veggies");
+            System.out.println("Please select the type of veggies you'd like (enter 0 to skip):");
+            String veggiesChoice = getUserChoice(menuItemParser.getVeggiesList());
 
-        System.out.println("Please select the type of sauces you'd like:");
-        String saucesChoice = getUserChoice(sandwichList, "sauces");
+            System.out.println("Please select the type of sauces you'd like (enter 0 to skip):");
+            String saucesChoice = getUserChoice(menuItemParser.getSaucesList());
 
-        System.out.println("Please select the type of drink you'd like:");
-        String drinksChoice = getUserChoice(sandwichList, "drinks");
+            System.out.println("Please select the type of drink you'd like (enter 0 to skip):");
+            String drinksChoice = getUserChoice(menuItemParser.getDrinksList());
 
-        System.out.println("Please select the type of chips you'd like:");
-        String chipsChoice = getUserChoice(sandwichList, "chips");
+            System.out.println("Please select the type of chips you'd like (enter 0 to skip):");
+            String chipsChoice = getUserChoice(menuItemParser.getChipsList());
 
-        // Print the user's choices
-        System.out.println("Your sandwich order:");
-        System.out.println("Bread: " + breadChoice);
-        System.out.println("Meat: " + meatChoice);
-        System.out.println("Cheese: " + cheeseChoice);
-        System.out.println("Veggies: " + veggiesChoice);
-        System.out.println("Sauces: " + saucesChoice);
-        System.out.println("Drink: " + drinksChoice);
-        System.out.println("Chips: " + chipsChoice);
-    }
+            SandwichIngredients sandwich = new SandwichIngredients(
+                    breadChoice, meatChoice, cheeseChoice, veggiesChoice
+            );
+            sandwich.setSauces(saucesChoice);
+            sandwich.setDrinks(drinksChoice);
+            sandwich.setChips(chipsChoice);
+            sandwiches.add(sandwich);
 
-    private String getUserChoice(List<SandwichIngredients> sandwichList, String itemType) {
-        int index = 1;
-        for (SandwichIngredients menuItem : sandwichList) {
-            switch (itemType) {
-                case "bread":
-                    System.out.println(index + ". " + menuItem.getBread());
-                    break;
-                case "meat":
-                    System.out.println(index + ". " + menuItem.getMeat());
-                    break;
-                case "cheese":
-                    System.out.println(index + ". " + menuItem.getCheese());
-                    break;
-                case "veggies":
-                    System.out.println(index + ". " + menuItem.getVeggies());
-                    break;
-                case "sauces":
-                    System.out.println(index + ". " + menuItem.getSauces());
-                    break;
-                case "drinks":
-                    System.out.println(index + ". " + menuItem.getDrinks());
-                    break;
-                case "chips":
-                    System.out.println(index + ". " + menuItem.getChips());
-                    break;
-                default:
-                    System.out.println("Invalid menu item type.");
+            System.out.println("Would you like to add another sandwich? (yes/no)");
+            String anotherSandwich = scanner.nextLine().trim().toLowerCase();
+            if (!anotherSandwich.equals("yes")) {
+                ordering = false;
             }
+        }
+
+        checkout();
+    }
+
+    private String getUserChoice(List<String> options) {
+        int index = 1;
+        for (String option : options) {
+            System.out.println(index + ". " + option);
             index++;
         }
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline
+        System.out.println("0. Skip");
 
-        switch (itemType) {
-            case "bread":
-                return sandwichList.get(choice - 1).getBread();
-            case "meat":
-                return sandwichList.get(choice - 1).getMeat();
-            case "cheese":
-                return sandwichList.get(choice - 1).getCheese();
-            case "veggies":
-                return sandwichList.get(choice - 1).getVeggies();
-            case "sauces":
-                return sandwichList.get(choice - 1).getSauces();
-            case "drinks":
-                return sandwichList.get(choice - 1).getDrinks();
-            case "chips":
-                return sandwichList.get(choice - 1).getChips();
-            default:
-                return "Invalid choice";
+        int choice = -1;
+        while (choice < 0 || choice > options.size()) {
+            System.out.print("Enter your choice (0-" + options.size() + "): ");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice < 0 || choice > options.size()) {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+            }
         }
+        scanner.nextLine();
+
+        return choice == 0 ? "" : options.get(choice - 1);
+    }
+
+    private void checkout() {
+        System.out.println("Enter your name for the receipt:");
+        String customerName = scanner.nextLine().trim();
+
+        double totalAmount = calculateTotalAmount();
+
+        FileWriter.Receipt receipt = new FileWriter.Receipt();
+        receipt.generateReceipt(customerName, sandwiches, totalAmount);
+
+        System.out.println("Thank you for your order! Your receipt has been printed.");
+    }
+
+    private double calculateTotalAmount() {
+        // TODO add parsed to calculate total amount
+        return sandwiches.size() * 10.0;
     }
 }

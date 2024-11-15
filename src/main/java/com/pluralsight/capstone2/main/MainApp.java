@@ -2,6 +2,7 @@ package com.pluralsight.capstone2.main;
 
 import com.pluralsight.capstone2.utilities.*;
 import com.pluralsight.capstone2.orderingsystem.CurrentCustomerOrder;
+import com.pluralsight.capstone2.sandwich.SandwichPrompt;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -9,6 +10,8 @@ public class MainApp {
         UserChoice userChoice = new UserChoice();
         UserPrompt userPrompt = new UserPrompt();
         CurrentCustomerOrder currentCustomerOrder = new CurrentCustomerOrder();
+        MenuItemParser menuItemParser = new MenuItemParser();
+        SandwichPrompt sandwichPrompt = new SandwichPrompt(menuItemParser);
 
         while (running) {
             displayMenu();
@@ -17,6 +20,7 @@ public class MainApp {
                 case "1":
                     userPrompt.userOrderNumberPrompt();
                     currentCustomerOrder.placeOrder(userPrompt.getNumberOfOrders());
+                    sandwichPrompt.sandwichPrompt();
                     break;
                 case "2":
                     System.out.println("Thank you! Goodbye.");
