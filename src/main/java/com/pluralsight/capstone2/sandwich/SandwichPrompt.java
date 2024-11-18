@@ -97,8 +97,9 @@ public class SandwichPrompt {
         System.out.println("Thank you for your order! Your receipt has been printed.");
     }
 
-    private double calculateTotalAmount() {
+    private double calculateTotalAmount(price) {
         // TODO add parsed to calculate total amount
+        price =
         return sandwiches.size() * 10.0;
     }
 }
