@@ -1,6 +1,6 @@
 package com.pluralsight.capstone2.sandwich;
 
-import com.pluralsight.capstone2.utilities.FileWriter;
+import com.pluralsight.capstone2.utilities.ReceiptWriter;
 import com.pluralsight.capstone2.utilities.MenuItemParser;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +91,7 @@ public class SandwichPrompt {
 
         double totalAmount = calculateTotalAmount();
 
-        FileWriter.Receipt receipt = new FileWriter.Receipt();
+        ReceiptWriter.Receipt receipt = new ReceiptWriter.Receipt();
         receipt.generateReceipt(customerName, sandwiches, totalAmount);
 
         System.out.println("Thank you for your order! Your receipt has been printed.");

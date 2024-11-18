@@ -1,7 +1,6 @@
 package com.pluralsight.capstone2.main;
 
 import com.pluralsight.capstone2.utilities.*;
-import com.pluralsight.capstone2.orderingsystem.CurrentCustomerOrder;
 import com.pluralsight.capstone2.sandwich.SandwichPrompt;
 
 public class MainApp {
@@ -9,7 +8,6 @@ public class MainApp {
         boolean running = true;
         UserChoice userChoice = new UserChoice();
         UserPrompt userPrompt = new UserPrompt();
-        CurrentCustomerOrder currentCustomerOrder = new CurrentCustomerOrder();
         MenuItemParser menuItemParser = new MenuItemParser();
         SandwichPrompt sandwichPrompt = new SandwichPrompt(menuItemParser);
 
@@ -19,7 +17,6 @@ public class MainApp {
             switch (input) {
                 case "1":
                     userPrompt.userOrderNumberPrompt();
-                    //currentCustomerOrder.placeOrder(userPrompt.getNumberOfOrders());
                     sandwichPrompt.sandwichPrompt();
                     break;
                 case "2":

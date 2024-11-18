@@ -1,16 +1,24 @@
 Receipt
-Customer: Nick
-Date: 2024-11-15T10:45:17.637565
+Customer: nick
+Date: 2024-11-17T21:52:46.886353
 ==============================
 Sandwich 1:
  - Bread: White
  - Meat: Ham
  - Cheese: American
- - Veggies: Peppers
+ - Veggies: Onions
  - Sauces: Mayo
- - Drink: Diet Coke
- - Chips: Lightly Salted
+ - Drink: 
+ - Chips: 
+Sandwich 2:
+ - Bread: Wheat
+ - Meat: Salami
+ - Cheese: Provolone
+ - Veggies: Tomatoes
+ - Sauces: Mustard
+ - Drink: Sprite
+ - Chips: Cheddar  Sour Cream
 ==============================
-Total Amount Paid: $10.0
+Total Amount Paid: $20.0
 ==============================
 Thank you for your order!
